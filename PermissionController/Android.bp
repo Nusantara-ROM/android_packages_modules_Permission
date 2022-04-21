@@ -80,7 +80,9 @@ android_app {
     privileged: true,
     certificate: "platform",
     rename_resources_package: false,
-    required: ["privapp_allowlist_com.android.permissioncontroller.xml"],
+    required: ["privapp_allowlist_com.android.permissioncontroller.xml",
+        "default_permissions_com.android.permissioncontroller.xml",
+    ],
 
     srcs: [":permissioncontroller-sources"],
 
@@ -151,4 +153,11 @@ android_app {
     plugins: ["java_api_finder"],
 
     kotlincflags: ["-Xjvm-default=enable"],
+}
+
+prebuilt_etc_xml {
+    name: "default_permissions_com.android.permissioncontroller.xml",
+    src: "default_permissions_com.android.permissioncontroller.xml",
+    filename_from_src: true,
+    sub_dir: "default-permissions",
 }
